@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace RoleBasedSalarySystem.Core.Entities
+namespace RoleBasedSalarySystem.DataAccess.Entities
 {
     public class Employee : BaseEntity
     {

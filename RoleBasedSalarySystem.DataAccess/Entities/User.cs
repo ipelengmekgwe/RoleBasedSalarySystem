@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace RoleBasedSalarySystem.Core.Entities
+namespace RoleBasedSalarySystem.DataAccess.Entities
 {
     public class User : BaseEntity
     {
-        public string Name { get; set; }
+        public string UserName { get; set; }
+        public string Password { get; set; }
         public Role Role { get; set; }
     }
 }
