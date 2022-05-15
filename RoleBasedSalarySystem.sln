@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoleBasedSalarySystem.DataA
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoleBasedSalarySystem.Test", "RoleBasedSalarySystem.Test\RoleBasedSalarySystem.Test.csproj", "{701DD906-2C94-4725-9563-823C78D78884}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoleBasedSalarySystem.Models", "RoleBasedSalarySystem.Models\RoleBasedSalarySystem.Models.csproj", "{585072D1-E775-4E87-88F4-CF21144839E8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{701DD906-2C94-4725-9563-823C78D78884}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{701DD906-2C94-4725-9563-823C78D78884}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{701DD906-2C94-4725-9563-823C78D78884}.Release|Any CPU.Build.0 = Release|Any CPU
+		{585072D1-E775-4E87-88F4-CF21144839E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{585072D1-E775-4E87-88F4-CF21144839E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{585072D1-E775-4E87-88F4-CF21144839E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{585072D1-E775-4E87-88F4-CF21144839E8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
