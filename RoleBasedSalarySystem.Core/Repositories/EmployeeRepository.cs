@@ -33,9 +33,12 @@ namespace RoleBasedSalarySystem.Core.Repositories
             try
             {
                 var employee = await _dbContext.Employees.FindAsync(id);
+
+                if (employee == null) return false;
+
                 employee.IsDeleted = true;
                 employee.LastModifiedDate = DateTime.Now;
-                employee.LastModifiedById = 1; // from identityUserService
+                //employee.LastModifiedById = 1; // from identityUserService once implemented
 
                 await _dbContext.SaveChangesAsync();
 
@@ -68,7 +71,7 @@ namespace RoleBasedSalarySystem.Core.Repositories
             try
             {
                 employee.LastModifiedDate = DateTime.Now;
-                employee.LastModifiedById = 1; // from identityUserService
+                //employee.LastModifiedById = 1; // from identityUserService once implemented
 
                 var updatedEmployee = _dbContext.Update(employee);
 

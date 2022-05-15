@@ -10,5 +10,6 @@ namespace RoleBasedSalarySystem.DataAccess.Entities
         public string IdNumber { get; set; }
         public string ProfilePictureUrl { get; set; }
         public Role Role { get; set; }
+        public int RoleId { get; set; }
     }
 }

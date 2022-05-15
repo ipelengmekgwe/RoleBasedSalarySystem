@@ -5,6 +5,27 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20220514211250_InitialMigration.cs" />
+    <Compile Remove="Migrations\20220514211250_InitialMigration.Designer.cs" />
+    <Compile Remove="Migrations\20220515134028_InitialMigration.cs" />
+    <Compile Remove="Migrations\20220515134028_InitialMigration.Designer.cs" />
+    <Compile Remove="Migrations\20220515140149_InitialMigration.cs" />
+    <Compile Remove="Migrations\20220515140149_InitialMigration.Designer.cs" />
+    <Compile Remove="Migrations\20220515141526_InitialMigration.cs" />
+    <Compile Remove="Migrations\20220515141526_InitialMigration.Designer.cs" />
+    <Compile Remove="Migrations\20220515141707_InitialMigration.cs" />
+    <Compile Remove="Migrations\20220515141707_InitialMigration.Designer.cs" />
+    <Compile Remove="Migrations\20220515143859_InitialMigration.cs" />
+    <Compile Remove="Migrations\20220515143859_InitialMigration.Designer.cs" />
+    <Compile Remove="Migrations\20220515150342_InitialMigration.cs" />
+    <Compile Remove="Migrations\20220515150342_InitialMigration.Designer.cs" />
+    <Compile Remove="Migrations\20220515151755_InitialMigration.cs" />
+    <Compile Remove="Migrations\20220515151755_InitialMigration.Designer.cs" />
+    <Compile Remove="Migrations\20220515160640_InitialMigration.cs" />
+    <Compile Remove="Migrations\20220515160640_InitialMigration.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.25" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.25" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.25">

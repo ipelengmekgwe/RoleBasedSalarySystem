@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using RoleBasedSalarySystem.DataAccess.Entities;
+using System.Reflection;
 
 namespace RoleBasedSalarySystem.DataAccess.Data
 {
@@ -12,5 +13,11 @@ namespace RoleBasedSalarySystem.DataAccess.Data
         public DbSet<Task> Tasks { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Work> Work { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+        }
     }
 }
