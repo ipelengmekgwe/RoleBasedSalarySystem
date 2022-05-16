@@ -1,0 +1,67 @@
+﻿@page
+@model RoleBasedSalarySystem.Client.Pages.Employees.CreateModel
+
+<br/>
+<h2 class="text-info">New Employee</h2>
+<br />
+
+<div class="border container" style="padding: 30px;">
+    <form method="post">
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="Employee.FirstName">First Name</label>
+            </div>
+            <div class="col-6">
+                <input asp-for="Employee.FirstName" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="Employee.LastName">Last Name</label>
+            </div>
+            <div class="col-6">
+                <input asp-for="Employee.LastName" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="Employee.DateOfBirth">Date of Birth</label>
+            </div>
+            <div class="col-6">
+                <input asp-for="Employee.DateOfBirth" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="Employee.IdNumber">ID Number</label>
+            </div>
+            <div class="col-6">
+                <input asp-for="Employee.IdNumber" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="Employee.ProfilePictureUrl">Profile Picture</label>
+            </div>
+            <div class="col-6">
+                <input asp-for="Employee.ProfilePictureUrl" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="Employee.RoleId">Role</label>
+            </div>
+            <div class="col-6">
+                <input asp-for="Employee.RoleId" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-3 offset-3">
+                <input type="submit" value="Create" class="btn btn-primary form-control" />
+            </div>
+            <div class="col-3">
+                <a asp-page="Index" class="btn btn-success form-control">Back to Employees</a>
+            </div>
+        </div>
+    </form>
+</div>
