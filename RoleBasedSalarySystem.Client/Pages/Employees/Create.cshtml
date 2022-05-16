@@ -28,7 +28,7 @@
                 <label asp-for="Employee.DateOfBirth">Date of Birth</label>
             </div>
             <div class="col-6">
-                <input asp-for="Employee.DateOfBirth" class="form-control" />
+                <input type="date" asp-for="Employee.DateOfBirth" class="form-control" />
             </div>
         </div>
         <div class="form-group row">
@@ -52,7 +52,7 @@
                 <label asp-for="Employee.RoleId">Role</label>
             </div>
             <div class="col-6">
-                <input asp-for="Employee.RoleId" class="form-control" />
+                <select asp-for="Employee.RoleId" asp-items="@(new SelectList(Model.Roles, "Id", "Name"))" class="form-control"></select>
             </div>
         </div>
         <div class="form-group row">

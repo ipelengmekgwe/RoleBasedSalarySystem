@@ -9,14 +9,11 @@ using System.Threading.Tasks;
 
 namespace RoleBasedSalarySystem.API.Controllers
 {
-    [ApiController]
-    [Route("api/[controller]")]
-    public class EmployeesController : ControllerBase
+    public class EmployeesController : BaseApiController
     {
         private readonly ILogger<EmployeesController> _logger;
         private readonly IEmployeeRepository _employeeRepository;
         private readonly IMapper _mapper;
-
 
         public EmployeesController(ILogger<EmployeesController> logger, IEmployeeRepository employeeRepository, IMapper mapper)
         {

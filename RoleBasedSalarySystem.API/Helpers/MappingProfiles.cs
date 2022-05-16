@@ -9,7 +9,10 @@ namespace RoleBasedSalarySystem.API.Helpers
         public MappingProfiles()
         {
             CreateMap<Employee, EmployeeDto>()
-                .ForMember(x => x.ProfilePictureUrl, o => o.MapFrom<EmployeeUrlResolver>());
+                .ForMember(x => x.ProfilePictureUrl, o => o.MapFrom<EmployeeUrlResolver>())
+                .ReverseMap();
+
+            CreateMap<Role, RoleDto>().ReverseMap();
         }
     }
 }

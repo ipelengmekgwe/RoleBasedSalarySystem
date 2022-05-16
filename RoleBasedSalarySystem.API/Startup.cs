@@ -27,6 +27,7 @@ namespace RoleBasedSalarySystem.API
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+            services.AddScoped<IRoleRepository, RoleRepository>();
             services.AddAutoMapper(typeof(MappingProfiles));
 
             services.AddCors(opt =>

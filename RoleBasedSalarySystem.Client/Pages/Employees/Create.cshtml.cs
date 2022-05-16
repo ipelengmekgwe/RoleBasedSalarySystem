@@ -1,7 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using RoleBasedSalarySystem.Client.Services.Employee;
+using RoleBasedSalarySystem.Client.Services.Role;
 using RoleBasedSalarySystem.Models;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace RoleBasedSalarySystem.Client.Pages.Employees
@@ -9,18 +11,23 @@ namespace RoleBasedSalarySystem.Client.Pages.Employees
     public class CreateModel : PageModel
     {
         private readonly IEmployeeService _employeeService;
+        private readonly IRoleService _roleService;
 
-        public CreateModel(IEmployeeService employeeService)
+        public CreateModel(IEmployeeService employeeService, IRoleService roleService)
         {
             _employeeService = employeeService;
+            _roleService = roleService;
         }
 
         [BindProperty]
         public EmployeeDto Employee { get; set; }
 
-        public void OnGet()
+        //[BindProperty]
+        public IEnumerable<RoleDto> Roles { get; set; } 
+
+        public async Task OnGetAsync()
         {
-            // load the roles
+            Roles = await _roleService.GetRolesAsync();
         }
 
         public async Task<IActionResult> OnPostAsync()

@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using RoleBasedSalarySystem.Client.Services.Employee;
+using RoleBasedSalarySystem.Client.Services.Role;
 using System;
 
 namespace RoleBasedSalarySystem.Client
@@ -26,6 +27,7 @@ namespace RoleBasedSalarySystem.Client
                 client.BaseAddress = new Uri(Configuration["ApiUrl"]);
             });
             services.AddTransient<IEmployeeService, EmployeeService>();
+            services.AddTransient<IRoleService, RoleService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
