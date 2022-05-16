@@ -10,7 +10,7 @@ using RoleBasedSalarySystem.DataAccess.Data;
 namespace RoleBasedSalarySystem.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220515162456_InitialMigration")]
+    [Migration("20220516144727_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

@@ -1,0 +1,14 @@
+[
+  {
+    "Name": "Data Capture",
+    "Rate": 30
+  },
+  {
+    "Name": "Reception",
+    "Rate": 35
+  },
+  {
+    "Name": "Intern Developer",
+    "Rate": 50
+  }
+]

@@ -1,0 +1,26 @@
+[
+  {
+    "FirstName": "Jennifer",
+    "LastName": "Becker",
+    "DateOfBirth": "2022-01-01",
+    "IdNumber": "2201010123456",
+    "ProfilePictureUrl": "images/jennifer-becker.png",
+    "RoleId": 1
+  },
+  {
+    "FirstName": "Douglas",
+    "LastName": "Wilson",
+    "DateOfBirth": "2022-02-02",
+    "IdNumber": "2202020123456",
+    "ProfilePictureUrl": "images/douglas-wilson.png",
+    "RoleId": 2
+  },
+  {
+    "FirstName": "Daniel",
+    "LastName": "Chavez",
+    "DateOfBirth": "2022-03-03",
+    "IdNumber": "2203030123456",
+    "ProfilePictureUrl": "images/daniel-chavez.png",
+    "RoleId": 3
+  }
+]
