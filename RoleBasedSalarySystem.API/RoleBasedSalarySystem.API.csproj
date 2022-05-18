@@ -1,11 +1,10 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.25" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.25">
       <PrivateAssets>all</PrivateAssets>
@@ -21,6 +20,10 @@
     <ProjectReference Include="..\RoleBasedSalarySystem.Core\RoleBasedSalarySystem.Core.csproj" />
     <ProjectReference Include="..\RoleBasedSalarySystem.DataAccess\RoleBasedSalarySystem.DataAccess.csproj" />
     <ProjectReference Include="..\RoleBasedSalarySystem.Models\RoleBasedSalarySystem.Models.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\images\" />
   </ItemGroup>
 
 

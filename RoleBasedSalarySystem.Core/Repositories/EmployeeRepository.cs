@@ -1,7 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using RoleBasedSalarySystem.Core.Interfaces;
 using RoleBasedSalarySystem.DataAccess.Data;
 using RoleBasedSalarySystem.DataAccess.Entities;
+using RoleBasedSalarySystem.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,20 +14,24 @@ namespace RoleBasedSalarySystem.Core.Repositories
     public class EmployeeRepository : IEmployeeRepository
     {
         private readonly ApplicationDbContext _dbContext;
+        private readonly IMapper _mapper;
 
-        public EmployeeRepository(ApplicationDbContext dbContext)
+        public EmployeeRepository(ApplicationDbContext dbContext, IMapper mapper)
         {
             _dbContext = dbContext;
+            _mapper = mapper;
         }
 
-        public async Task<Employee> CreateEmployeeAsync(Employee employee)
+        public async Task<EmployeeModel> CreateEmployeeAsync(EmployeeModel employeeModel)
         {
+            var employee = _mapper.Map<EmployeeModel, Employee>(employeeModel);
             employee.CreatedDate = DateTime.Now;
+
             var newEmployee = await _dbContext.Employees.AddAsync(employee);
 
             await _dbContext.SaveChangesAsync();
 
-            return newEmployee.Entity;
+            return _mapper.Map<Employee, EmployeeModel>(newEmployee.Entity);
         }
 
         public async Task<bool> DeleteEmployeeAsync(int id)
@@ -38,7 +44,6 @@ namespace RoleBasedSalarySystem.Core.Repositories
 
                 employee.IsDeleted = true;
                 employee.LastModifiedDate = DateTime.Now;
-                //employee.LastModifiedById = 1; // from identityUserService once implemented
 
                 await _dbContext.SaveChangesAsync();
 
@@ -50,34 +55,38 @@ namespace RoleBasedSalarySystem.Core.Repositories
             }
         }
 
-        public async Task<Employee> GetEmployeeByIdAsync(int id)
+        public async Task<EmployeeModel> GetEmployeeByIdAsync(int id)
         {
-            return await _dbContext.Employees
+            var employee = await _dbContext.Employees
                 .Where(x => !x.IsDeleted)
                 .Include(x => x.Role)
                 .FirstOrDefaultAsync(x => x.Id == id);
+
+            return _mapper.Map<Employee, EmployeeModel>(employee);
         }
 
-        public async Task<IReadOnlyList<Employee>> GetEmployeesAsync()
+        public async Task<IReadOnlyList<EmployeeModel>> GetEmployeesAsync()
         {
-            return await _dbContext.Employees
+            var employees = await _dbContext.Employees
                 .Where(x => !x.IsDeleted)
                 .Include(x => x.Role)
                 .ToListAsync();
+
+            return _mapper.Map<IReadOnlyList<Employee>, IReadOnlyList<EmployeeModel>>(employees);
         }
 
-        public async Task<Employee> UpdateEmployeeAsync(Employee employee)
+        public async Task<EmployeeModel> UpdateEmployeeAsync(EmployeeModel employeeModel)
         {
             try
             {
+                var employee = _mapper.Map<EmployeeModel, Employee>(employeeModel);
                 employee.LastModifiedDate = DateTime.Now;
-                //employee.LastModifiedById = 1; // from identityUserService once implemented
 
                 var updatedEmployee = _dbContext.Update(employee);
 
                 await _dbContext.SaveChangesAsync();
 
-                return updatedEmployee.Entity;
+                return _mapper.Map<Employee, EmployeeModel>(updatedEmployee.Entity);
             }
             catch (Exception)
             {

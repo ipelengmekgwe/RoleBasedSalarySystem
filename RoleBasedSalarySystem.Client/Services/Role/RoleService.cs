@@ -19,7 +19,7 @@ namespace RoleBasedSalarySystem.Client.Services.Role
             _logger = logger;
         }
 
-        public async Task<bool> CreateRoleAsync(RoleDto role)
+        public async Task<bool> CreateRoleAsync(RoleModel role)
         {
             try
             {
@@ -35,9 +35,9 @@ namespace RoleBasedSalarySystem.Client.Services.Role
             }
         }
 
-        public async Task<IEnumerable<RoleDto>> GetRolesAsync()
+        public async Task<IEnumerable<RoleModel>> GetRolesAsync()
         {
-            var roles = new List<RoleDto>();
+            var roles = new List<RoleModel>();
             try
             {
                 var httpClient = _httpClientFactory.CreateClient("RBSS.API");
@@ -45,7 +45,7 @@ namespace RoleBasedSalarySystem.Client.Services.Role
                 if (response.IsSuccessStatusCode)
                 {
                     var result = await response.Content.ReadAsStringAsync();
-                    roles = JsonHelper<List<RoleDto>>.Deserialize(result);
+                    roles = JsonHelper<List<RoleModel>>.Deserialize(result);
                 }
 
                 return roles;

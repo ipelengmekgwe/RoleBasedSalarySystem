@@ -8,6 +8,7 @@ namespace RoleBasedSalarySystem.DataAccess.Config
     {
         public void Configure(EntityTypeBuilder<Task> builder)
         {
+            builder.Property(p => p.CreatedDate).ValueGeneratedOnUpdate();
             builder.Property(p => p.Name).HasMaxLength(255);
         }
     }

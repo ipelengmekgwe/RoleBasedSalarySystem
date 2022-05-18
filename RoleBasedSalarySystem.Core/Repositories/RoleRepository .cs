@@ -1,7 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using RoleBasedSalarySystem.Core.Interfaces;
 using RoleBasedSalarySystem.DataAccess.Data;
 using RoleBasedSalarySystem.DataAccess.Entities;
+using RoleBasedSalarySystem.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,20 +14,24 @@ namespace RoleBasedSalarySystem.Core.Repositories
     public class RoleRepository : IRoleRepository
     {
         private readonly ApplicationDbContext _dbContext;
+        private readonly IMapper _mapper;
 
-        public RoleRepository(ApplicationDbContext dbContext)
+        public RoleRepository(ApplicationDbContext dbContext, IMapper mapper)
         {
             _dbContext = dbContext;
+            _mapper = mapper;
         }
 
-        public async Task<Role> CreateRoleAsync(Role role)
+        public async Task<RoleModel> CreateRoleAsync(RoleModel roleModel)
         {
+            var role = _mapper.Map<RoleModel, Role>(roleModel);
             role.CreatedDate = DateTime.Now;
+
             var newRole = await _dbContext.Roles.AddAsync(role);
 
             await _dbContext.SaveChangesAsync();
 
-            return newRole.Entity;
+            return _mapper.Map<Role, RoleModel>(newRole.Entity);
         }
 
         public async Task<bool> DeleteRoleAsync(int id)
@@ -49,31 +55,36 @@ namespace RoleBasedSalarySystem.Core.Repositories
             }
         }
 
-        public async Task<Role> GetRoleByIdAsync(int id)
+        public async Task<RoleModel> GetRoleByIdAsync(int id)
         {
-            return await _dbContext.Roles
+            var role = await _dbContext.Roles
                 .Where(x => !x.IsDeleted)
                 .FirstOrDefaultAsync(x => x.Id == id);
+
+            return _mapper.Map<Role, RoleModel>(role);
         }
 
-        public async Task<IReadOnlyList<Role>> GetRolesAsync()
+        public async Task<IReadOnlyList<RoleModel>> GetRolesAsync()
         {
-            return await _dbContext.Roles
+            var roles = await _dbContext.Roles
                 .Where(x => !x.IsDeleted)
                 .ToListAsync();
+
+            return _mapper.Map<IReadOnlyList<Role>, IReadOnlyList<RoleModel>>(roles);
         }
 
-        public async Task<Role> UpdateRoleAsync(Role role)
+        public async Task<RoleModel> UpdateRoleAsync(RoleModel roleModel)
         {
             try
             {
+                var role = _mapper.Map<RoleModel, Role>(roleModel);
                 role.LastModifiedDate = DateTime.Now;
 
                 var updatedRole = _dbContext.Update(role);
 
                 await _dbContext.SaveChangesAsync();
 
-                return updatedRole.Entity;
+                return _mapper.Map<Role, RoleModel>(updatedRole.Entity);
             }
             catch (Exception)
             {

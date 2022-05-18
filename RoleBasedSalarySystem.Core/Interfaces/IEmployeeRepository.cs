@@ -1,4 +1,4 @@
-﻿using RoleBasedSalarySystem.DataAccess.Entities;
+﻿using RoleBasedSalarySystem.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -6,10 +6,10 @@ namespace RoleBasedSalarySystem.Core.Interfaces
 {
     public interface IEmployeeRepository
     {
-        public Task<Employee> GetEmployeeByIdAsync(int id);
-        public Task<IReadOnlyList<Employee>> GetEmployeesAsync();
-        public Task<Employee> CreateEmployeeAsync(Employee employee);
-        public Task<Employee> UpdateEmployeeAsync(Employee employee);
+        public Task<EmployeeModel> GetEmployeeByIdAsync(int id);
+        public Task<IReadOnlyList<EmployeeModel>> GetEmployeesAsync();
+        public Task<EmployeeModel> CreateEmployeeAsync(EmployeeModel employee);
+        public Task<EmployeeModel> UpdateEmployeeAsync(EmployeeModel employee);
         public Task<bool> DeleteEmployeeAsync(int id);
     }
 }

@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using RoleBasedSalarySystem.Client.Services.Employee;
 using RoleBasedSalarySystem.Models;
@@ -15,11 +16,21 @@ namespace RoleBasedSalarySystem.Client.Pages.Employees
             _employeeService = employeeService;
         }
 
-        public IEnumerable<EmployeeDto> Employees { get; set; }
+        public IEnumerable<EmployeeModel> Employees { get; set; }
 
         public async Task OnGetAsync()
         {
             Employees = await _employeeService.GetEmployeesAsync();
+        }
+
+        public async Task<IActionResult> OnPostDeleteAsync(int id)
+        {
+            var deleted = await _employeeService.DeleteEmployee(id);
+
+            if (deleted)
+                return RedirectToPage("Index");
+
+            return NotFound();
         }
     }
 }

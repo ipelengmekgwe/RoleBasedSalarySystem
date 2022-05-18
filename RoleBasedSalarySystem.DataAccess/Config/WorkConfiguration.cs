@@ -8,6 +8,7 @@ namespace RoleBasedSalarySystem.DataAccess.Config
     {
         public void Configure(EntityTypeBuilder<Work> builder)
         {
+            builder.Property(p => p.CreatedDate).ValueGeneratedOnUpdate();
             builder.HasOne(e => e.Employee).WithMany().HasForeignKey(p => p.EmployeeId);
             builder.HasOne(t => t.Task).WithMany().HasForeignKey(p => p.TaskId);
         }

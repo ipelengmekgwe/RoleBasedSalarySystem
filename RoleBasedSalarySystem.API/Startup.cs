@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using RoleBasedSalarySystem.API.Helpers;
+using RoleBasedSalarySystem.Core.Helpers;
 using RoleBasedSalarySystem.Core.Interfaces;
 using RoleBasedSalarySystem.Core.Repositories;
 using RoleBasedSalarySystem.DataAccess.Data;
@@ -50,6 +50,8 @@ namespace RoleBasedSalarySystem.API
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseStaticFiles();
 
             app.UseCors("CorsPolicy");
 

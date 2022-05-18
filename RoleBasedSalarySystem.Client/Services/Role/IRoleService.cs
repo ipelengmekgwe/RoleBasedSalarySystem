@@ -6,7 +6,7 @@ namespace RoleBasedSalarySystem.Client.Services.Role
 {
     public interface IRoleService
     {
-        Task<IEnumerable<RoleDto>> GetRolesAsync();
-        Task<bool> CreateRoleAsync(RoleDto role);
+        Task<IEnumerable<RoleModel>> GetRolesAsync();
+        Task<bool> CreateRoleAsync(RoleModel role);
     }
 }

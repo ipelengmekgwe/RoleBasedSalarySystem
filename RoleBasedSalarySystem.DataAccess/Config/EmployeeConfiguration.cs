@@ -8,6 +8,7 @@ namespace RoleBasedSalarySystem.DataAccess.Config
     {
         public void Configure(EntityTypeBuilder<Employee> builder)
         {
+            builder.Property(p => p.CreatedDate).ValueGeneratedOnUpdate(); //skip field on update
             builder.Property(p => p.FirstName).IsRequired().HasMaxLength(255);
             builder.Property(p => p.LastName).IsRequired().HasMaxLength(255);
             builder.Property(p => p.IdNumber).IsRequired().HasMaxLength(255);

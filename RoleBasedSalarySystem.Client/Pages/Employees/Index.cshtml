@@ -7,7 +7,7 @@
         <h2 class="text-info">Employee List</h2>
     </div>
     <div class="col-3">
-        <a asp-page="Create" class="btn btn-info form-control text-white">Add New Employee</a>
+        <a asp-page="Upsert" class="btn btn-info form-control text-white">Add New Employee</a>
     </div>
 
     <div class="col-12 border p-3 mt-3">
@@ -36,8 +36,8 @@
                             <td>@Html.DisplayFor(e => emp.LastName)</td>
                             <td>@Html.DisplayFor(e => emp.ProfilePictureUrl)</td>
                             <td>
-                                <button class="btn btn-danger btn-sm">Delete</button>
-                                <a class="btn btn-success btn-sm text-white">Edit</a>
+                                <button asp-page-handler="Delete" asp-route-id="@emp.Id" onclick="return confirm('Are you sure you want to delete?')" class="btn btn-danger btn-sm">Delete</button>
+                                <a asp-page="Upsert" asp-route-id="@emp.Id" class="btn btn-success btn-sm text-white" style="cursor: pointer">Edit</a>
                             </td>
                         </tr>
                     }

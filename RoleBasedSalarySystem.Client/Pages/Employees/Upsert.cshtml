@@ -1,12 +1,17 @@
 ﻿@page
-@model RoleBasedSalarySystem.Client.Pages.Employees.CreateModel
+@model RoleBasedSalarySystem.Client.Pages.Employees.UpsertModel
 
 <br/>
-<h2 class="text-info">New Employee</h2>
+<h2 class="text-info">@(Model.Employee == null ? "Create" : "Edit") Employee</h2>
 <br />
 
 <div class="border container" style="padding: 30px;">
     <form method="post">
+        @if (Model.Employee != null)
+        {
+            <input type="hidden" asp-for="Employee.Id" />
+        }
+        <div class="text-danger" asp-validation-summary="ModelOnly"></div>
         <div class="form-group row">
             <div class="col-3">
                 <label asp-for="Employee.FirstName">First Name</label>
@@ -14,6 +19,7 @@
             <div class="col-6">
                 <input asp-for="Employee.FirstName" class="form-control" />
             </div>
+            <span asp-validation-for="Employee.FirstName" class="text-danger"></span>
         </div>
         <div class="form-group row">
             <div class="col-3">
@@ -22,6 +28,7 @@
             <div class="col-6">
                 <input asp-for="Employee.LastName" class="form-control" />
             </div>
+            <span asp-validation-for="Employee.LastName" class="text-danger"></span>
         </div>
         <div class="form-group row">
             <div class="col-3">
@@ -30,6 +37,7 @@
             <div class="col-6">
                 <input type="date" asp-for="Employee.DateOfBirth" class="form-control" />
             </div>
+            <span asp-validation-for="Employee.DateOfBirth" class="text-danger"></span>
         </div>
         <div class="form-group row">
             <div class="col-3">
@@ -38,13 +46,14 @@
             <div class="col-6">
                 <input asp-for="Employee.IdNumber" class="form-control" />
             </div>
+            <span asp-validation-for="Employee.IdNumber" class="text-danger"></span>
         </div>
         <div class="form-group row">
             <div class="col-3">
                 <label asp-for="Employee.ProfilePictureUrl">Profile Picture</label>
             </div>
             <div class="col-6">
-                <input asp-for="Employee.ProfilePictureUrl" class="form-control" />
+                <input type="file" accept="image/*" asp-for="Employee.ProfilePictureUrl" class="form-control" />
             </div>
         </div>
         <div class="form-group row">
@@ -54,10 +63,13 @@
             <div class="col-6">
                 <select asp-for="Employee.RoleId" asp-items="@(new SelectList(Model.Roles, "Id", "Name"))" class="form-control"></select>
             </div>
+            <span asp-validation-for="Employee.RoleId" class="text-danger"></span>
         </div>
         <div class="form-group row">
             <div class="col-3 offset-3">
-                <input type="submit" value="Create" class="btn btn-primary form-control" />
+                <button type="submit" class="btn btn-primary form-control">
+                    @(Model.Employee == null ? "Create" : "Update")
+                </button>
             </div>
             <div class="col-3">
                 <a asp-page="Index" class="btn btn-success form-control">Back to Employees</a>
@@ -65,3 +77,7 @@
         </div>
     </form>
 </div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial"/>
+}

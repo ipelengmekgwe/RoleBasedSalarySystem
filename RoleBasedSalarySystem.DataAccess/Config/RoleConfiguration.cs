@@ -8,6 +8,7 @@ namespace RoleBasedSalarySystem.DataAccess.Config
     {
         public void Configure(EntityTypeBuilder<Role> builder)
         {
+            builder.Property(p => p.CreatedDate).ValueGeneratedOnUpdate();
             builder.Property(p => p.Name).HasMaxLength(255);
             builder.Property(p => p.Rate).HasColumnType("decimal(18,2)");
         }

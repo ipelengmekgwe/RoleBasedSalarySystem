@@ -19,12 +19,12 @@ namespace RoleBasedSalarySystem.Client.Services.Employee
             _logger = logger;
         }
 
-        public async Task<bool> CreateEmployeeAsync(EmployeeDto employee)
+        public async Task<bool> CreateEmployeeAsync(EmployeeModel employee)
         {
             try
             {
                 var httpClient = _httpClientFactory.CreateClient("RBSS.API");
-                var response = await httpClient.PostAsJsonAsync("create", employee);
+                var response = await httpClient.PostAsJsonAsync("employees/create", employee);
 
                 return response.IsSuccessStatusCode;
             }
@@ -35,9 +35,49 @@ namespace RoleBasedSalarySystem.Client.Services.Employee
             }
         }
 
-        public async Task<IEnumerable<EmployeeDto>> GetEmployeesAsync()
+        public async Task<bool> DeleteEmployee(int id)
         {
-            var employees = new List<EmployeeDto>();
+            try
+            {
+                var httpClient = _httpClientFactory.CreateClient("RBSS.API");
+                var response = await httpClient.DeleteAsync($"employees/{id}");
+
+                return response.IsSuccessStatusCode;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Error encounter while deleting an employee. Message: {ex.InnerException.Message ?? ex.Message}");
+                return false;
+            }
+        }
+
+        public async Task<EmployeeModel> GetEmployeeByIdAsync(int id)
+        {
+            var employee = new EmployeeModel();
+            try
+            {
+                var httpClient = _httpClientFactory.CreateClient("RBSS.API");
+                var response = await httpClient.GetAsync($"employees/{id}");
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var result = await response.Content.ReadAsStringAsync();
+                    employee = JsonHelper<EmployeeModel>.Deserialize(result);
+                }
+
+                return employee;
+
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Error encounter while fetching an employee. Message: {ex.InnerException.Message ?? ex.Message}");
+                return employee;
+            }
+        }
+
+        public async Task<IEnumerable<EmployeeModel>> GetEmployeesAsync()
+        {
+            var employees = new List<EmployeeModel>();
             try
             {
                 var httpClient = _httpClientFactory.CreateClient("RBSS.API");
@@ -45,7 +85,7 @@ namespace RoleBasedSalarySystem.Client.Services.Employee
                 if (response.IsSuccessStatusCode)
                 {
                     var result = await response.Content.ReadAsStringAsync();
-                    employees = JsonHelper<List<EmployeeDto>>.Deserialize(result);
+                    employees = JsonHelper<List<EmployeeModel>>.Deserialize(result);
                 }
 
                 return employees;
@@ -56,6 +96,22 @@ namespace RoleBasedSalarySystem.Client.Services.Employee
                 return employees;
             }
 
+        }
+
+        public async Task<bool> UpdateEmployeeAsync(EmployeeModel employee)
+        {
+            try
+            {
+                var httpClient = _httpClientFactory.CreateClient("RBSS.API");
+                var response = await httpClient.PostAsJsonAsync("employees/update", employee);
+
+                return response.IsSuccessStatusCode;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Error encounter while creating an employee. Message: {ex.InnerException.Message ?? ex.Message}");
+                return false;
+            }
         }
     }
 }
