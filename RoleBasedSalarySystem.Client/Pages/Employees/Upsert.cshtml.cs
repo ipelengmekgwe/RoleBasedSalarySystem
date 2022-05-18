@@ -1,6 +1,8 @@
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using RoleBasedSalarySystem.Client.Services.Employee;
+using RoleBasedSalarySystem.Client.Services.Image;
 using RoleBasedSalarySystem.Client.Services.Role;
 using RoleBasedSalarySystem.Models;
 using System.Collections.Generic;
@@ -13,11 +15,13 @@ namespace RoleBasedSalarySystem.Client.Pages.Employees
     {
         private readonly IEmployeeService _employeeService;
         private readonly IRoleService _roleService;
+        private readonly IImageService _imageService;
 
-        public UpsertModel(IEmployeeService employeeService, IRoleService roleService)
+        public UpsertModel(IEmployeeService employeeService, IRoleService roleService, IImageService imageService)
         {
             _employeeService = employeeService;
             _roleService = roleService;
+            _imageService = imageService;
         }
 
         [BindProperty]
@@ -25,6 +29,9 @@ namespace RoleBasedSalarySystem.Client.Pages.Employees
 
         [BindProperty]
         public IEnumerable<RoleModel> Roles { get; set; }
+
+        [BindProperty]
+        public IFormFile ImageFile { get; set; }
 
         public async Task OnGetAsync(int? id)
         {
@@ -41,6 +48,14 @@ namespace RoleBasedSalarySystem.Client.Pages.Employees
             if (ModelState.IsValid)
             {
                 bool success;
+
+                if (ImageFile != null)
+                {
+                    var (uploaded, profileUrl) = await _imageService.UploadImage(ImageFile, Employee.IdNumber);
+
+                    if (uploaded) Employee.ProfilePictureUrl = profileUrl;
+                }
+
                 if (Employee.Id == 0)
                 {
                     success = await _employeeService.CreateEmployeeAsync(Employee);

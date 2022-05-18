@@ -9,10 +9,8 @@ namespace RoleBasedSalarySystem.Core.Helpers
         public MappingProfiles()
         {
             CreateMap<Employee, EmployeeModel>()
-                .ForMember(x => x.ProfilePictureUrl, o => o.MapFrom<EmployeeUrlResolver>());
-
-            CreateMap<EmployeeModel, Employee>()
-                .ForMember(x => x.ProfilePictureUrl, o => o.MapFrom<EmployeeUrlResolver>());
+                .ForMember(x => x.ProfilePictureUrl, o => o.MapFrom<EmployeeUrlResolver>())
+                .ReverseMap();
 
             CreateMap<Role, RoleModel>().ReverseMap();
         }

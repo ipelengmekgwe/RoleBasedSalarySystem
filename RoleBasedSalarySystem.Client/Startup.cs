@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using RoleBasedSalarySystem.Client.Services.Employee;
+using RoleBasedSalarySystem.Client.Services.Image;
 using RoleBasedSalarySystem.Client.Services.Role;
 using System;
 
@@ -28,6 +29,7 @@ namespace RoleBasedSalarySystem.Client
             });
             services.AddTransient<IEmployeeService, EmployeeService>();
             services.AddTransient<IRoleService, RoleService>();
+            services.AddTransient<IImageService, ImageService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

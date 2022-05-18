@@ -4,7 +4,7 @@
     "LastName": "Becker",
     "DateOfBirth": "2022-01-01",
     "IdNumber": "2201010123456",
-    "ProfilePictureUrl": "images/jennifer-becker.png",
+    "ProfilePictureUrl": "images/2201010123456.png",
     "RoleId": 1
   },
   {
@@ -12,7 +12,7 @@
     "LastName": "Wilson",
     "DateOfBirth": "2022-02-02",
     "IdNumber": "2202020123456",
-    "ProfilePictureUrl": "images/douglas-wilson.png",
+    "ProfilePictureUrl": "images/2202020123456.png",
     "RoleId": 2
   },
   {
@@ -20,7 +20,7 @@
     "LastName": "Chavez",
     "DateOfBirth": "2022-03-03",
     "IdNumber": "2203030123456",
-    "ProfilePictureUrl": "images/daniel-chavez.png",
+    "ProfilePictureUrl": "images/2203030123456.png",
     "RoleId": 3
   }
 ]
