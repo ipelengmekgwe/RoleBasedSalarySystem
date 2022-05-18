@@ -109,7 +109,7 @@ namespace RoleBasedSalarySystem.Client.Services.Employee
             }
             catch (Exception ex)
             {
-                _logger.LogError($"Error encounter while creating an employee. Message: {ex.InnerException.Message ?? ex.Message}");
+                _logger.LogError($"Error encounter while updating an employee. Message: {ex.InnerException.Message ?? ex.Message}");
                 return false;
             }
         }
