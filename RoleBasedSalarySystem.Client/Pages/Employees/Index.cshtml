@@ -34,7 +34,9 @@
                         <tr>
                             <td>@Html.DisplayFor(e => emp.FirstName)</td>
                             <td>@Html.DisplayFor(e => emp.LastName)</td>
-                            <td>@Html.DisplayFor(e => emp.ProfilePictureUrl)</td>
+                            <td>
+                                <img src="@emp.ProfilePictureUrl" alt="image" style="width: 250px; height: 200px;" />
+                            </td>
                             <td>
                                 <button asp-page-handler="Delete" asp-route-id="@emp.Id" onclick="return confirm('Are you sure you want to delete?')" class="btn btn-danger btn-sm">Delete</button>
                                 <a asp-page="Upsert" asp-route-id="@emp.Id" class="btn btn-success btn-sm text-white" style="cursor: pointer">Edit</a>
