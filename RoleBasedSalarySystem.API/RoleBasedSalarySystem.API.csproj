@@ -22,9 +22,5 @@
     <ProjectReference Include="..\RoleBasedSalarySystem.Models\RoleBasedSalarySystem.Models.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="wwwroot\images\" />
-  </ItemGroup>
-
 
 </Project>

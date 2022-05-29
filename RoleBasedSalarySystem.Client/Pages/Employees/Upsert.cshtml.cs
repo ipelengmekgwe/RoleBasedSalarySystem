@@ -49,12 +49,7 @@ namespace RoleBasedSalarySystem.Client.Pages.Employees
             {
                 bool success;
 
-                if (ImageFile != null)
-                {
-                    var (uploaded, profileUrl) = await _imageService.UploadImage(ImageFile, Employee.IdNumber);
-
-                    if (uploaded) Employee.ProfilePictureUrl = profileUrl;
-                }
+                Employee.ProfilePictureUrl = await _imageService.UploadImage(ImageFile, Employee.IdNumber);
 
                 if (Employee.Id == 0)
                 {

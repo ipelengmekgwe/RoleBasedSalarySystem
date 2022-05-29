@@ -5,6 +5,7 @@ namespace RoleBasedSalarySystem.Client.Services.Image
 {
     public interface IImageService
     {
-        public Task<(bool, string)> UploadImage(IFormFile file, string fileName = default);
+        public Task<string> UploadImage(IFormFile file, string fileName = default);
+        public Task<IFormFile> RetriveImage(string searchString);
     }
 }

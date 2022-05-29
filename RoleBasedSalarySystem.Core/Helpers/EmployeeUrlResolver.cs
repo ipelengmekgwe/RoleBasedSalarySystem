@@ -18,7 +18,7 @@ namespace RoleBasedSalarySystem.Core.Helpers
         {
             if (!string.IsNullOrEmpty(source.ProfilePictureUrl))
             {
-                return _config["ImageUrl"] + source.ProfilePictureUrl;
+                return _config["ApiImageUrl"] + source.ProfilePictureUrl;
             }
 
             return null;

@@ -7,72 +7,89 @@
 
 <div class="border container" style="padding: 30px;">
     <form method="post" enctype="multipart/form-data">
-        @if (Model.Employee != null)
-        {
-            <input type="hidden" asp-for="Employee.Id" />
-        }
-        <div class="text-danger" asp-validation-summary="ModelOnly"></div>
-        <div class="form-group row">
-            <div class="col-3">
-                <label asp-for="Employee.FirstName">First Name</label>
+        <div class="row">
+            <div class="col-8">
+                @if (Model.Employee != null)
+                {
+                    <input type="hidden" asp-for="Employee.Id" />
+                }
+                <div class="text-danger" asp-validation-summary="All"></div>
+                <div class="form-group row">
+                    <div class="col-3">
+                        <label asp-for="Employee.FirstName">First Name</label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="Employee.FirstName" class="form-control" />
+                    </div>
+                    <span asp-validation-for="Employee.FirstName" class="text-danger"></span>
+                </div>
+                <div class="form-group row">
+                    <div class="col-3">
+                        <label asp-for="Employee.LastName">Last Name</label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="Employee.LastName" class="form-control" />
+                    </div>
+                    <span asp-validation-for="Employee.LastName" class="text-danger"></span>
+                </div>
+                <div class="form-group row">
+                    <div class="col-3">
+                        <label asp-for="Employee.DateOfBirth">Date of Birth</label>
+                    </div>
+                    <div class="col-8">
+                        <input type="date" asp-for="Employee.DateOfBirth" class="form-control" />
+                    </div>
+                    <span asp-validation-for="Employee.DateOfBirth" class="text-danger"></span>
+                </div>
+                <div class="form-group row">
+                    <div class="col-3">
+                        <label asp-for="Employee.IdNumber">ID Number</label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="Employee.IdNumber" class="form-control" />
+                    </div>
+                    <span asp-validation-for="Employee.IdNumber" class="text-danger"></span>
+                </div>
+                <div class="form-group row">
+                    <div class="col-3">
+                        <label asp-for="ImageFile">Profile Picture</label>
+                    </div>
+                    <div class="col-8">
+                        @*<input type="file" accept="image/*" asp-for="ImageFile" class="form-control" />*@
+                        <div class="custom-file">
+                            <input asp-for="ImageFile" accept="image/*" class="custom-file-input form-control">
+                            <label class="custom-file-label" data-browse="Browse">Choose image...</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-3">
+                        <label asp-for="Employee.RoleId">Role</label>
+                    </div>
+                    <div class="col-8">
+                        <select asp-for="Employee.RoleId" asp-items="@(new SelectList(Model.Roles, "Id", "Name"))" class="custom-select">
+                            <option value="">Select Role</option>
+                        </select>
+                    </div>
+                    <span asp-validation-for="Employee.RoleId" class="text-danger"></span>
+                </div>
+                <div class="form-group row">
+                    <div class="col-4 offset-3">
+                        <button type="submit" class="btn btn-primary form-control">
+                            @(Model.Employee == null ? "Create" : "Update")
+                        </button>
+                    </div>
+                    <div class="col-4">
+                        <a asp-page="Index" class="btn btn-success form-control">Back to Employees</a>
+                    </div>
+                </div>
             </div>
-            <div class="col-6">
-                <input asp-for="Employee.FirstName" class="form-control" />
-            </div>
-            <span asp-validation-for="Employee.FirstName" class="text-danger"></span>
-        </div>
-        <div class="form-group row">
-            <div class="col-3">
-                <label asp-for="Employee.LastName">Last Name</label>
-            </div>
-            <div class="col-6">
-                <input asp-for="Employee.LastName" class="form-control" />
-            </div>
-            <span asp-validation-for="Employee.LastName" class="text-danger"></span>
-        </div>
-        <div class="form-group row">
-            <div class="col-3">
-                <label asp-for="Employee.DateOfBirth">Date of Birth</label>
-            </div>
-            <div class="col-6">
-                <input type="date" asp-for="Employee.DateOfBirth" class="form-control" />
-            </div>
-            <span asp-validation-for="Employee.DateOfBirth" class="text-danger"></span>
-        </div>
-        <div class="form-group row">
-            <div class="col-3">
-                <label asp-for="Employee.IdNumber">ID Number</label>
-            </div>
-            <div class="col-6">
-                <input asp-for="Employee.IdNumber" class="form-control" />
-            </div>
-            <span asp-validation-for="Employee.IdNumber" class="text-danger"></span>
-        </div>
-        <div class="form-group row">
-            <div class="col-3">
-                <label asp-for="ImageFile">Profile Picture</label>
-            </div>
-            <div class="col-6">
-                <input type="file" accept="image/*" asp-for="ImageFile" class="form-control" />
-            </div>
-        </div>
-        <div class="form-group row">
-            <div class="col-3">
-                <label asp-for="Employee.RoleId">Role</label>
-            </div>
-            <div class="col-6">
-                <select asp-for="Employee.RoleId" asp-items="@(new SelectList(Model.Roles, "Id", "Name"))" class="form-control"></select>
-            </div>
-            <span asp-validation-for="Employee.RoleId" class="text-danger"></span>
-        </div>
-        <div class="form-group row">
-            <div class="col-3 offset-3">
-                <button type="submit" class="btn btn-primary form-control">
-                    @(Model.Employee == null ? "Create" : "Update")
-                </button>
-            </div>
-            <div class="col-3">
-                <a asp-page="Index" class="btn btn-success form-control">Back to Employees</a>
+            <div class="col-4">
+                @if (Model.Employee != null)
+                {
+                    <img src="@Model.Employee.ProfilePictureUrl" alt="image" asp-append-version="true"
+                         style="height: 360px; width: 310px; border: 1px solid black;" />
+                }
             </div>
         </div>
     </form>
@@ -80,4 +97,12 @@
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial"/>
+    <script>
+        $(document).ready(function() {
+            $('.custom-file-input').on("change", function() {
+                var fileName = $(this).val().split("\\").pop();
+                $(this).next('.custom-file-label').html(fileName || "Choose image...");
+            });
+        });
+    </script>
 }

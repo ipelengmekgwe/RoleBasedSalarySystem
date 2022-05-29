@@ -17,5 +17,6 @@ namespace RoleBasedSalarySystem.Models
         public string ProfilePictureUrl { get; set; }
         [Required(ErrorMessage = "Role is required.")]
         public int RoleId { get; set; }
+        public string FullName => $"{FirstName} {LastName}";
     }
 }

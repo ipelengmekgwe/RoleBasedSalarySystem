@@ -14,36 +14,24 @@
         <form method="post">
             @if (Model.Employees.Count() > 0)
             {
-                <table class="table table-striped border">
-                    <tr class="table-secondary">
-                        <th>
-                            <label asp-for="Employees.FirstOrDefault().FirstName">First Name</label>
-                        </th>
-                        <th>
-                            <label asp-for="Employees.FirstOrDefault().LastName">Last Name</label>
-                        </th>
-                        <th>
-                            <label asp-for="Employees.FirstOrDefault().ProfilePictureUrl">Picture</label>
-                        </th>
-                        <th>
-                            Actions
-                        </th>
-                    </tr>
-                    @foreach(var emp in Model.Employees)
+                <div class="card-deck">
+                    @foreach(var employee in Model.Employees)
                     {
-                        <tr>
-                            <td>@Html.DisplayFor(e => emp.FirstName)</td>
-                            <td>@Html.DisplayFor(e => emp.LastName)</td>
-                            <td>
-                                <img src="@emp.ProfilePictureUrl" alt="image" style="width: 250px; height: 200px;" />
-                            </td>
-                            <td>
-                                <button asp-page-handler="Delete" asp-route-id="@emp.Id" onclick="return confirm('Are you sure you want to delete?')" class="btn btn-danger btn-sm">Delete</button>
-                                <a asp-page="Upsert" asp-route-id="@emp.Id" class="btn btn-success btn-sm text-white" style="cursor: pointer">Edit</a>
-                            </td>
-                        </tr>
+                        <div class="card m-3" style="min-width: 18rem; max-width: 30.5%;">
+                            <div class="card-header">
+                                <h3>@employee.FullName</h3>
+                            </div>
+
+                            <img class="card-img-top" src="@employee.ProfilePictureUrl"
+                                style="height: 200px; width: auto" alt="image" asp-append-version="true" />
+
+                            <div class="card-footer text-center">
+                                <button asp-page-handler="Delete" asp-route-id="@employee.Id" onclick="return confirm('Are you sure you want to delete?')" class="btn btn-danger btn-sm">Delete</button>
+                                <a asp-page="Upsert" asp-route-id="@employee.Id" class="btn btn-success btn-sm text-white" style="cursor: pointer">Edit</a>
+                            </div>
+                        </div>
                     }
-                </table>
+                </div>
             }
             else
             {
